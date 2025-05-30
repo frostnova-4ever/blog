@@ -15,14 +15,14 @@
         <div class="left-panel">
           <!-- 左侧面板内容 -->
           <Self/>
-          <newContent/>
+          <!-- <newContent/> -->
           <p>左侧屏内容示例</p>
         </div>
             <div class="middle-panel">
             <!-- 中间部分渲染 Page 组件 -->
                 <div>
                 <!-- 显示获取到的 HTML 文件数量 -->
-                <p>Total HTML files: {{ totalContents }}</p>
+                <!-- <p>Total HTML files: {{ totalContents }}</p> -->
                 <router-view :total-contents="totalContents"></router-view>
                 </div>
             </div>
@@ -47,6 +47,7 @@
   import datetime from './content/datetime.vue';
   import views from './content/views.vue';
   import { useRouter } from 'vue-router';
+
   
   // 定义存储后端数据的响应式变量
   const techOptions = ref([]);

@@ -16,17 +16,13 @@
 </template>
 
 <script setup>
-import { ref, defineProps, computed, watch } from 'vue';
+import { ref, computed, watch } from 'vue';
 import './Button.css'
 
-const props = defineProps({
-  text: {
-    type: Array,
-    default: () => []
-  }
-});
+// 直接定义一个 JS 对象作为选项数据
+const options = ["技术", "待完善2", "待完善3", "待完善4", "待完善5", "待完善6"];
 
-const radioOptions = computed(() => props.text);
+const radioOptions = computed(() => options);
 const selected = ref(radioOptions.value.length > 0? radioOptions.value[0] : null);
 
 const selectOption = (option) => {
@@ -96,4 +92,4 @@ input[type="radio"] {
   pointer-events: none; 
   background: rgba(180, 180, 180, 0.7);
 }
-</style>    
+</style>

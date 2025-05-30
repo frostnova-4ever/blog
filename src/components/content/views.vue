@@ -1,41 +1,45 @@
 <!-- 累计观看数量 -->
 
 <template>
-    <div class="article-item">
-      <div class="article-title">累计观看数量</div>
-      <div class="article-date">{{ viewCount }}</div>
+  <div class="article-item">
+    <div class="article-title">本站访问统计</div>
+    <div class="article-date">
+      总访问量：<span id="busuanzi_value_site_pv">-</span><br>
+      访客人数：<span id="busuanzi_value_site_uv">-</span>
     </div>
-  </template>
-  
-  <script setup>
-  import { ref, onMounted } from 'vue';
-  
-  // 从本地存储中获取之前的观看数量，如果没有则初始化为0
-  const viewCount = ref(parseInt(localStorage.getItem('viewCount')) || 0);
-  
-  onMounted(() => {
-    // 每次组件挂载（页面加载或刷新）时，观看数量加1
-    viewCount.value++;
-    // 将更新后的观看数量存储到本地存储中
-    localStorage.setItem('viewCount', viewCount.value.toString());
-  });
-  </script>
-  
-  <style scoped>
-  .article-item {
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 10px;
-    background-color: #fff;
+  </div>
+</template>
+
+<script setup>
+import { onMounted } from 'vue';
+
+onMounted(() => {
+  // 动态加载 busuanzi 脚本
+  if (!window.BUSUANZI_LOADED) {
+    const script = document.createElement('script');
+    script.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
+    script.async = true;
+    document.body.appendChild(script);
+    window.BUSUANZI_LOADED = true;
   }
-  .article-title {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 5px;
-  }
-  .article-date {
-    font-size: 14px;
-    color: #666;
-  }
-  </style>
+});
+</script>
+
+<style scoped>
+.article-item {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+.article-title {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 5px;
+}
+.article-date {
+  font-size: 14px;
+  color: #666;
+}
+</style>

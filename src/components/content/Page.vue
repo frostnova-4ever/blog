@@ -28,6 +28,8 @@ const totalContents = ref(0);
 const itemsPerPage = ref(8);
 const pageNumber = ref(1);
 const currentPageContents = ref([]);
+const htmlMap = ref({});
+const htmlKeys = ref([]);
 
 const router = useRouter();
 const route = useRoute();
@@ -35,11 +37,13 @@ const route = useRoute();
 const updatePageContents = () => {
   const startIndex = (pageNumber.value - 1) * itemsPerPage.value;
   const endIndex = startIndex + itemsPerPage.value;
-  // 将每个元素转换为包含 id 和 image 属性的对象
-  currentPageContents.value = Array.from({ length: totalContents.value }, (_, index) => ({
-    id: index + 1,
-    image: `/images/image-${index + 1}.jpg`
-  })).slice(startIndex, endIndex);
+  currentPageContents.value = htmlKeys.value
+    .slice(startIndex, endIndex)
+    .map((key, idx) => ({
+      id: Number(key),
+      file: htmlMap.value[key],
+      image: `/md/image/${htmlMap.value[key].replace('.html', '.jpg')}`
+    }));
 };
 
 const handleSizeChange = (newSize) => {
@@ -53,16 +57,16 @@ const handleCurrentChange = (newPage) => {
   router.push(`/page/${newPage}?itemsPerPage=${itemsPerPage.value}`);
 };
 
-onMounted(() => {
+onMounted(async () => {
   try {
-    // 使用 import.meta.glob 获取 src/md 目录下的 HTML 文件
-    const htmlFilesGlob = import.meta.glob('/src/md/*.html', { eager: false });
-    const htmlFiles = Object.keys(htmlFilesGlob).map(key => key.split('/').pop());
-    totalContents.value = htmlFiles.length;
-    console.log('✅ 成功获取 HTML 文件列表:', htmlFiles);
+    const res = await fetch('/md/list.json');
+    htmlMap.value = await res.json();
+    htmlKeys.value = Object.keys(htmlMap.value).sort((a, b) => Number(a) - Number(b));
+    totalContents.value = htmlKeys.value.length;
+    updatePageContents();
+    console.log('✅ 成功获取 HTML 文件列表:', htmlMap.value);
   } catch (error) {
     console.error('❌ 获取 HTML 文件列表失败:', error);
-    // 处理请求失败的情况（如显示错误信息）
   }
 });
 

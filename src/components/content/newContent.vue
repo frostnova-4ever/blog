@@ -1,4 +1,4 @@
-<!-- 主页左侧的最新文章组件 -->
+主页左侧的最新文章组件
 
 <template>
   <div class="article-list">

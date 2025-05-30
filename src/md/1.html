@@ -1,103 +1,141 @@
 <!DOCTYPE html>
 <html lang="zh_CN" data-theme-mode="light" data-light-theme="daylight" data-dark-theme="midnight">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes"/>
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="stylesheet" type="text/css" id="baseStyle" href="stage/build/export/base.css?v=3.1.28"/>
-    <link rel="stylesheet" type="text/css" id="themeDefaultStyle" href="appearance/themes/daylight/theme.css?v=3.1.28"/>
+    <link rel="stylesheet" type="text/css" id="baseStyle" href="stage/build/export/base.css?v=3.1.28" />
+    <link rel="stylesheet" type="text/css" id="themeDefaultStyle" href="appearance/themes/daylight/theme.css?v=3.1.28" />
     <script src="stage/protyle/js/protyle-html.js?v=3.1.28"></script>
-    
+
     <title>这是一个文档</title>
     <!-- Exported by SiYuan v3.1.28 -->
     <style>
-        body {font-family: var(--b3-font-family);background-color: var(--b3-theme-background);color: var(--b3-theme-on-background)}
+        body {
+            font-family: var(--b3-font-family);
+            background-color: var(--b3-theme-background);
+            color: var(--b3-theme-on-background)
+        }
+        
         @font-face {
-  font-family: "Emojis Additional";
-  src: url(../../../appearance/fonts/Noto-COLRv1-2.047/Noto-COLRv1.woff2) format("woff2");
-  unicode-range: U+1fae9, U+1fac6, U+1fabe, U+1fadc, U+e50a, U+1fa89, U+1fadf, U+1f1e6-1f1ff, U+1f3f4, U+e0067, U+e0062,
-  U+e0065, U+e006e, U+e007f, U+e0073, U+e0063, U+e0074, U+e0077, U+e006c;
-  size-adjust: 85%;
-}
-@font-face {
-  font-family: "Emojis Reset";
-  src: local("Segoe UI Emoji"),
-  local("Segoe UI Symbol");
-  unicode-range: U+263a, U+21a9, U+2642, U+303d, U+2197, U+2198, U+2199, U+2196, U+2195, U+2194, U+2660, U+2665, U+2666, 
-  U+2663, U+3030, U+21aa, U+25b6, U+25c0, U+2640, U+203c, U+a9, U+ae, U+2122;
-  size-adjust: 85%;
-}
-@font-face {
-  font-family: "Emojis";
-  src: local("Segoe UI Emoji"),
-  local("Segoe UI Symbol");
-  size-adjust: 85%;
-}
-:root{--b3-font-size-editor:16px}
-.b3-typography code:not(.hljs), .protyle-wysiwyg span[data-type~=code] { font-variant-ligatures: none }
-.li > .protyle-action {height:34px;line-height: 34px}
-/* 列表项后的内容和列表项对齐 https://github.com/siyuan-note/siyuan/issues/2803 */
-.protyle-wysiwyg [data-node-id].li > .protyle-action ~ div {line-height:26px}
-.protyle-wysiwyg [data-node-id].li > .protyle-action ~ div > [spellcheck] {min-height:26px}
-.protyle-wysiwyg [data-node-id].li::before {height: calc(100% - 38px);top:38px}
-
-.protyle-wysiwyg [data-node-id] {}
-.protyle-wysiwyg .li {min-height:34px}
-.protyle-gutters button svg {height:26px}
+            font-family: "Emojis Additional";
+            src: url(../../../appearance/fonts/Noto-COLRv1-2.047/Noto-COLRv1.woff2) format("woff2");
+            unicode-range: U+1fae9, U+1fac6, U+1fabe, U+1fadc, U+e50a, U+1fa89, U+1fadf, U+1f1e6-1f1ff, U+1f3f4, U+e0067, U+e0062, U+e0065, U+e006e, U+e007f, U+e0073, U+e0063, U+e0074, U+e0077, U+e006c;
+            size-adjust: 85%;
+        }
         
+        @font-face {
+            font-family: "Emojis Reset";
+            src: local("Segoe UI Emoji"), local("Segoe UI Symbol");
+            unicode-range: U+263a, U+21a9, U+2642, U+303d, U+2197, U+2198, U+2199, U+2196, U+2195, U+2194, U+2660, U+2665, U+2666, U+2663, U+3030, U+21aa, U+25b6, U+25c0, U+2640, U+203c, U+a9, U+ae, U+2122;
+            size-adjust: 85%;
+        }
         
+        @font-face {
+            font-family: "Emojis";
+            src: local("Segoe UI Emoji"), local("Segoe UI Symbol");
+            size-adjust: 85%;
+        }
+        
+        :root {
+            --b3-font-size-editor: 16px
+        }
+        
+        .b3-typography code:not(.hljs),
+        .protyle-wysiwyg span[data-type~=code] {
+            font-variant-ligatures: none
+        }
+        
+        .li>.protyle-action {
+            height: 34px;
+            line-height: 34px
+        }
+        /* 列表项后的内容和列表项对齐 https://github.com/siyuan-note/siyuan/issues/2803 */
+        
+        .protyle-wysiwyg [data-node-id].li>.protyle-action~div {
+            line-height: 26px
+        }
+        
+        .protyle-wysiwyg [data-node-id].li>.protyle-action~div>[spellcheck] {
+            min-height: 26px
+        }
+        
+        .protyle-wysiwyg [data-node-id].li::before {
+            height: calc(100% - 38px);
+            top: 38px
+        }
+        
+        .protyle-wysiwyg [data-node-id] {}
+        
+        .protyle-wysiwyg .li {
+            min-height: 34px
+        }
+        
+        .protyle-gutters button svg {
+            height: 26px
+        }
     </style>
 </head>
+
 <body>
-<div class="b3-typography" 
-style="max-width: 800px;margin: 0 auto;" 
-id="preview"><h1 id="这是一个文档" id="20250503222856-wy1grnb" title="这是一个文档">这是一个文档</h1>
-<p id="20250503222856-kanh2xg" updated="20250503222905">　　对没错</p>
-<pre class="code-block" data-language="python"><code class="hljs">#错没对
+    <div class="b3-typography" style="max-width: 800px;margin: 0 auto;" id="preview">
+        <h1 id="这是一个文档" id="20250503222856-wy1grnb" title="这是一个文档">这是一个文档</h1>
+        <p id="20250503222856-kanh2xg" updated="20250503222905">　　对没错</p>
+        <pre class="code-block" data-language="python"><code class="hljs">#错没对
 for i in  range(n):
 	1==1
 </code></pre>
-<p id="20250503222938-wxfwh3c" updated="20250503222938">　　‍</p>
-</div>
-<script src="appearance/icons/material/icon.js?v=3.1.28"></script>
-<script src="stage/build/export/protyle-method.js?v=3.1.28"></script>
-<script src="stage/protyle/js/lute/lute.min.js?v=3.1.28"></script>  
-<script>
-    window.siyuan = {
-      config: {
-        appearance: { mode: 0, codeBlockThemeDark: "base16/dracula", codeBlockThemeLight: "github" },
-        editor: { 
-          codeLineWrap: true,
-          fontSize: 16,
-          codeLigatures: false,
-          plantUMLServePath: "https://www.plantuml.com/plantuml/svg/~1",
-          codeSyntaxHighlightLineNum: false,
-          katexMacros: JSON.stringify({}),
-        }
-      },
-      languages: {copy:"复制"}
-    };
-    const previewElement = document.getElementById('preview');
-    Protyle.highlightRender(previewElement, "stage/protyle");
-    Protyle.mathRender(previewElement, "stage/protyle", false);
-    Protyle.mermaidRender(previewElement, "stage/protyle");
-    Protyle.flowchartRender(previewElement, "stage/protyle");
-    Protyle.graphvizRender(previewElement, "stage/protyle");
-    Protyle.chartRender(previewElement, "stage/protyle");
-    Protyle.mindmapRender(previewElement, "stage/protyle");
-    Protyle.abcRender(previewElement, "stage/protyle");
-    Protyle.htmlRender(previewElement);
-    Protyle.plantumlRender(previewElement, "stage/protyle");
-    document.querySelectorAll(".protyle-action__copy").forEach((item) => {
-      item.addEventListener("click", (event) => {
-            let text = item.parentElement.nextElementSibling.textContent.trimEnd();
-            text = text.replace(/ /g, " "); // Replace non-breaking spaces with normal spaces when copying
-            navigator.clipboard.writeText(text);
-            event.preventDefault();
-            event.stopPropagation();
-      })
-    });
-</script></body></html>
+        <p id="20250503222938-wxfwh3c" updated="20250503222938">　　‍</p>
+    </div>
+    <script src="appearance/icons/material/icon.js?v=3.1.28"></script>
+    <script src="stage/build/export/protyle-method.js?v=3.1.28"></script>
+    <script src="stage/protyle/js/lute/lute.min.js?v=3.1.28"></script>
+    <script>
+        window.siyuan = {
+            config: {
+                appearance: {
+                    mode: 0,
+                    codeBlockThemeDark: "base16/dracula",
+                    codeBlockThemeLight: "github"
+                },
+                editor: {
+                    codeLineWrap: true,
+                    fontSize: 16,
+                    codeLigatures: false,
+                    plantUMLServePath: "https://www.plantuml.com/plantuml/svg/~1",
+                    codeSyntaxHighlightLineNum: false,
+                    katexMacros: JSON.stringify({}),
+                }
+            },
+            languages: {
+                copy: "复制"
+            }
+        };
+        const previewElement = document.getElementById('preview');
+        Protyle.highlightRender(previewElement, "stage/protyle");
+        Protyle.mathRender(previewElement, "stage/protyle", false);
+        Protyle.mermaidRender(previewElement, "stage/protyle");
+        Protyle.flowchartRender(previewElement, "stage/protyle");
+        Protyle.graphvizRender(previewElement, "stage/protyle");
+        Protyle.chartRender(previewElement, "stage/protyle");
+        Protyle.mindmapRender(previewElement, "stage/protyle");
+        Protyle.abcRender(previewElement, "stage/protyle");
+        Protyle.htmlRender(previewElement);
+        Protyle.plantumlRender(previewElement, "stage/protyle");
+        document.querySelectorAll(".protyle-action__copy").forEach((item) => {
+            item.addEventListener("click", (event) => {
+                let text = item.parentElement.nextElementSibling.textContent.trimEnd();
+                text = text.replace(/ /g, " "); // Replace non-breaking spaces with normal spaces when copying
+                navigator.clipboard.writeText(text);
+                event.preventDefault();
+                event.stopPropagation();
+            })
+        });
+    </script>
+</body>
+
+</html>

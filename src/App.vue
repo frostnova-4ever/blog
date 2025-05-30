@@ -20,3 +20,7 @@ import techHome from './components/tech-home.vue';
 <style scoped>
 /* 页面样式 */
 </style>
+
+<style>
+@import './assets/global.css';
+</style>

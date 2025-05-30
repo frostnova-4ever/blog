@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2>Content Detail: {{ contentId }}</h2>
-    <!-- 使用 iframe 加载 HTML 文件 -->
+    <!-- <h2>Content Detail: {{ contentId }}</h2> -->
+    <!-- 使用 iframe 加载 HTML  -->
     <iframe
       v-if="iframeSrc"
       :src="iframeSrc"
