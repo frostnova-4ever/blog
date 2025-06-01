@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { ref, watchEffect, onMounted } from 'vue';
+import { ref, watchEffect, onMounted, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Contents from './Contents.vue';
 
@@ -71,10 +71,17 @@ onMounted(async () => {
 });
 
 watchEffect(() => {
-  pageNumber.value = parseInt(route.params.page);
+  // 如果没有 page 参数，默认 1
+  const page = parseInt(route.params.page);
+  pageNumber.value = isNaN(page) ? 1 : page;
   itemsPerPage.value = parseInt(route.query.itemsPerPage) || 8;
   updatePageContents();
 });
+
+// 如果 props 里有 page，则优先用 props，否则用路由参数，否则默认 1
+const page = computed(() => {
+  return Number(route.params.page) || Number(route?.props?.page) || 1
+})
 </script>
 
 <style scoped>

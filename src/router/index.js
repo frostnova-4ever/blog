@@ -1,12 +1,15 @@
 // router/index.js
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import HtmlPreview from '../components/HtmlPreview.vue';
 
 const routes = [
-    // 重定向规则，当访问根路径时，跳转到 /page/1
+    // 访问根路径时，直接渲染 Page.vue，page 参数为 1
     {
         path: '/',
-        redirect: '/page/1'
+        name: 'Home',
+        component: () =>
+            import ('../components/content/Page.vue'),
+        props: { page: 1 }
     },
     {
         path: '/page/:page',
@@ -29,6 +32,6 @@ const routes = [
 ];
 
 export default createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes
 });
