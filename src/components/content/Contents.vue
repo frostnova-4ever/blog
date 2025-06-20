@@ -2,7 +2,7 @@
   <div class="content-card" @click="goPreview">
     <img :src="content.image" alt="Content Image" class="content-image" loading="lazy">
     <div class="content-info">
-      <h3>{{ content.file }}</h3>
+      <h3>{{ content.title }}</h3>
       <p>点击查看 HTML 内容</p>
     </div>
   </div>

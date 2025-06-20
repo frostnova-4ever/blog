@@ -34,16 +34,26 @@ const htmlKeys = ref([]);
 const router = useRouter();
 const route = useRoute();
 
-const updatePageContents = () => {
+const updatePageContents = async () => {
   const startIndex = (pageNumber.value - 1) * itemsPerPage.value;
   const endIndex = startIndex + itemsPerPage.value;
-  currentPageContents.value = htmlKeys.value
-    .slice(startIndex, endIndex)
-    .map((key, idx) => ({
-      id: Number(key),
-      file: htmlMap.value[key],
-      image: `/md/image/${htmlMap.value[key].replace('.html', '.jpg')}`
-    }));
+  const contents = await Promise.all(
+    htmlKeys.value.slice(startIndex, endIndex).map(async (key) => {
+      const file = htmlMap.value[key];
+      const response = await fetch(`/md/${file}`);
+      const html = await response.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const title = doc.querySelector('title')?.textContent || file;
+      return {
+        id: Number(key),
+        file,
+        image: `/md/image/${file.replace('.html', '.jpg')}`,
+        title
+      };
+    })
+  );
+  currentPageContents.value = contents;
 };
 
 const handleSizeChange = (newSize) => {
@@ -63,7 +73,7 @@ onMounted(async () => {
     htmlMap.value = await res.json();
     htmlKeys.value = Object.keys(htmlMap.value).sort((a, b) => Number(a) - Number(b));
     totalContents.value = htmlKeys.value.length;
-    updatePageContents();
+    await updatePageContents();
     console.log('✅ 成功获取 HTML 文件列表:', htmlMap.value);
   } catch (error) {
     console.error('❌ 获取 HTML 文件列表失败:', error);

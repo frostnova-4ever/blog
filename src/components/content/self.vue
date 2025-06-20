@@ -3,7 +3,7 @@
 <template>
     <div class="user-profile">
       <div class="avatar-container">
-        <img :src="avatarUrl" :alt="userName" class="avatar" />
+        <img :src="avatar" :alt="userName" class="avatar" />
       </div>
       <div class="user-info">
         <h2 class="name">{{ userName }}</h2>
@@ -27,17 +27,14 @@
   </template>
   
   <script setup>
-  // 引入必要的依赖（如果有）
   import { ref } from 'vue';
+  import avatar from '@/assets/avatar.jpg';  // 导入头像图片
   
-  // 定义组件的props
+  // 不再需要 avatarUrl prop
   const props = defineProps({
-    avatarUrl: {
-      type: String,
-      required: true
-    },
     userName: {
       type: String,
+      default: '霜印繁星', // 设置默认用户名
       required: true
     },
     userDescription: {
